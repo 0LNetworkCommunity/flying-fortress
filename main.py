@@ -6,53 +6,60 @@ from dotenv import load_dotenv
 app = typer.Typer(help="A CLI tool for interacting with Neo4j and performing various tasks.")
 
 
-def connect_to_neo4j():
-    """Connect to Neo4j and perform a sample query."""
-    load_dotenv()
+class Neo4jCLI:
+    def __init__(self):
+        self.neo4j_client = None
 
-    uri = os.getenv("NEO4J_URI")
-    username = os.getenv("NEO4J_USERNAME")
-    password = os.getenv("NEO4J_PASSWORD")
+    def init_neo4j_connection(self):
+        """Initialize the connection to the Neo4j database."""
+        load_dotenv()
 
-    if not uri or not username or not password:
-        typer.echo("Error: Missing required environment variables: NEO4J_URI, NEO4J_USERNAME, NEO4J_PASSWORD.")
-        raise typer.Exit(code=1)
+        uri = os.getenv("NEO4J_URI")
+        username = os.getenv("NEO4J_USERNAME")
+        password = os.getenv("NEO4J_PASSWORD")
 
-    neo4j_client = Neo4jClient(uri, username, password)
+        if not uri or not username or not password:
+            typer.echo("Error: Missing required environment variables: NEO4J_URI, NEO4J_USERNAME, NEO4J_PASSWORD.")
+            raise typer.Exit(code=1)
 
-    typer.echo(f"Connecting to Graph DB at {uri}...")
-    neo4j_client.connect()
-    typer.echo("...Connected!")
+        self.neo4j_client = Neo4jClient(uri, username, password)
+        typer.echo(f"Connecting to Graph DB at {uri}...")
+        self.neo4j_client.connect()
+        typer.echo("...Connected!")
 
-    # Perform some Neo4j operations
+    def disconnect(self):
+        """Close the Neo4j connection."""
+        if self.neo4j_client:
+            self.neo4j_client.close()
+            typer.echo("Connection closed.")
+            self.neo4j_client = None
+
+
+# Instantiate the CLI manager
+cli_manager = Neo4jCLI()
+cli_manager.init_neo4j_connection()
+
+
+def sanity_command():
+    """Test connection to Neo4j."""
     typer.echo("Collecting all offending CWs")
-    sanity = neo4j_client.get_sanity()
+    sanity = cli_manager.neo4j_client.get_sanity()
     typer.echo(f"Found {sanity} offending CWs")
 
-    # Close the connection
-    neo4j_client.close()
-    typer.echo("Connection closed.")
+def balance_command():
+    typer.echo("Exporting balance...")
+    balances = cli_manager.neo4j_client.get_balances()
+
+    # Add your sanity check logic here
+    typer.echo("Balance export completed.")
 
 
-def perform_sanity_checks():
-    """Perform sanity checks."""
-    typer.echo("Performing sanity checks...")
-    # Add the logic for sanity checks here
-    typer.echo("Sanity checks completed.")
+# Explicitly register the commands without decorators
+app.command("sanity")(sanity_command)
+app.command("balance")(balance_command)
 
-
-def another_task():
-    """Perform another task."""
-    typer.echo("Performing another task...")
-    # Add logic for the task here
-    typer.echo("Another task completed.")
-
-
-# Adding commands to the CLI
-app.command("connect")(connect_to_neo4j)
-app.command("sanity-checks")(perform_sanity_checks)
-app.command("another-task")(another_task)
 
 
 if __name__ == "__main__":
     app()
+    cli_manager.disconnect()

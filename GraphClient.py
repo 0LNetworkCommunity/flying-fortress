@@ -42,8 +42,8 @@ class Neo4jClient:
             for record in result:
               balance_data = {
                 "address": record["address"],
-                "balance": record["balance"] / 1_000_000,
-                "locked": record["locked"] / 1_000_000,
+                "balance": record["balance"],
+                "locked": record["locked"],
                 "cw": record["community_wallet"],
               }
               balances.append(balance_data)
@@ -61,9 +61,48 @@ class Neo4jClient:
               balance_data = {
                 "address": record["address"],
                 "destinations": record["destinations"],
-                "coins": record["total"], #don't scale, the query already does it
+                "total_out": record["total_out"], #don't scale, the query already does it
               }
               balances.append(balance_data)
             with open('root_sprayers.json', 'w') as json_file:
+              json.dump(balances, json_file, indent=2)
+            return result
+
+  def get_spray_tree(self):
+      with open('queries/spray_tree.cql', 'r') as file:
+        cypher_query = file.read()
+        with self.driver.session() as session:
+            params = { "root_sprayer": "0xbd6323842b5dc76e178ae7eaeacce7f" }
+            result = session.run(cypher_query, params)
+            balances = []
+            for record in result:
+              balance_data = {
+                "root" : params["root_sprayer"],
+                "address": record["address"]
+              }
+              balances.append(balance_data)
+            with open('spray_tree.json', 'w') as json_file:
+              json.dump(balances, json_file, indent=2)
+            return result
+
+  def get_spray_tree_with_balances(self, root_sprayer_literal):
+      with open('queries/spray_tree_with_balances.cql', 'r') as file:
+        cypher_query = file.read()
+        with self.driver.session() as session:
+            params = { "root_sprayer": root_sprayer_literal}
+            result = session.run(cypher_query, params)
+            balances = []
+            total_sum = 0
+            for record in result:
+              balance_data = {
+                "root" : params["root_sprayer"],
+                "address": record["address"],
+                "balance": record["balance"],
+                "locked": record["locked"]
+              }
+              total_sum = total_sum + record["balance"]
+              balances.append(balance_data)
+            print("total balance in tree {:,}".format(total_sum))
+            with open('spray_tree_with_balances.json', 'w') as json_file:
               json.dump(balances, json_file, indent=2)
             return result

@@ -20,11 +20,22 @@ python3 -m pip install -r requirements.txt
 ### Add credentials
 
 ```
-cp .envrc.sample .envrc
-# edit values in .envrc (see details here: https://pastebin.com/yZjpAYqj)
+cp .env.sample .env
+# edit values in .env (see details here: https://pastebin.com/yZjpAYqj)
 ```
 
 # Run it
 ```
-python3 main.py
+# start your virtual env
+source ./.libra_env/bin/activate
+
+# list the subcommands
+python3 main.py --help
+
+# check the connection to your neo4j
+python3 main.py sanity
+
+# export balances
+python3 main.py balance
+
 ```

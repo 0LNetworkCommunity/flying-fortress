@@ -23,18 +23,21 @@ class Neo4jClient:
       result_data = [dict(record["wallet"]) for record in result if record["wallet"]]
       return result_data
 
-  def get_striked_accounts(self):
-      with open('queries/get_striked.cql', 'r') as file:
+  def get_sanity(self):
+      with open('queries/sanity.cql', 'r') as file:
         cypher_query = file.read()
-      return self.execute_query(cypher_query, params)
+        with self.driver.session() as session:
+          result = session.run(cypher_query)
+          for record in result:
+            print(record["addr"])
+          return result
 
-  def red_hands(self):
-    with open('queries/red_hands.cql', 'r') as file:
-      cypher_query = file.read()
-    return self.execute_query(cypher_query, params)
-
-  def identify_cabal(self, seed_wallet_address):
-    with open('queries/id_cabal.cql', 'r') as file:
-      cypher_query = file.read()
-    params["seedWalletAddress"] = seed_wallet_address
-    return self.execute_query(cypher_query, params)
+  def get_balances(self):
+      with open('queries/balances.cql', 'r') as file:
+        cypher_query = file.read()
+        with self.driver.session() as session:
+          result = session.run(cypher_query)
+          for record in result:
+            print(record["address"])
+            print(record["balance"])
+          return result

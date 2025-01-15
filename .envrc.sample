@@ -1,3 +1,0 @@
-export NEO4J_URI="neo4j+s://********.databases.neo4j.io"
-export NEO4J_USERNAME="neo4j"
-export NEO4J_PASSWORD="*******************************************"

@@ -1,6 +1,7 @@
 # GraphClient.py
 from QueryParams import params
 from neo4j import GraphDatabase
+import json
 
 
 class Neo4jClient:
@@ -36,8 +37,16 @@ class Neo4jClient:
       with open('queries/balances.cql', 'r') as file:
         cypher_query = file.read()
         with self.driver.session() as session:
-          result = session.run(cypher_query)
-          for record in result:
-            print(record["address"])
-            print(record["balance"])
-          return result
+            result = session.run(cypher_query)
+            balances = []
+            for record in result:
+              balance_data = {
+                "address": record["address"],
+                "balance": record["balance"] / 1_000_000,
+                "locked": record["locked"] / 1_000_000,
+                "cw": record["community_wallet"],
+              }
+              balances.append(balance_data)
+            with open('balances.json', 'w') as json_file:
+              json.dump(balances, json_file, indent=2)
+            return result

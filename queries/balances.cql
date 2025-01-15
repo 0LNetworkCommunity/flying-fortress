@@ -16,9 +16,9 @@ WITH 1_000_000 AS scaling,
 ] AS ignore
 
 
-MATCH (f:Account)-[:State]->(s:Snapshot)
-WHERE s.balance > 0
+MATCH (f:Account)-[:State]->(s:Snapshot {version: 94602328})
 
-RETURN f.address as address, s.balance as balance, s.locked as locked
-LIMIT 100
-ORDER BY s.balance DESC
+WHERE s.balance > scaling
+
+RETURN f.address as address, s.balance as balance, s.slow_locked as locked, s.donor_voice as community_wallet
+ORDER BY balance DESC

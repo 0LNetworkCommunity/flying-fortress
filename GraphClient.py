@@ -50,3 +50,20 @@ class Neo4jClient:
             with open('balances.json', 'w') as json_file:
               json.dump(balances, json_file, indent=2)
             return result
+
+  def get_root_sprayers(self):
+      with open('queries/root_sprayers.cql', 'r') as file:
+        cypher_query = file.read()
+        with self.driver.session() as session:
+            result = session.run(cypher_query)
+            balances = []
+            for record in result:
+              balance_data = {
+                "address": record["address"],
+                "destinations": record["destinations"],
+                "coins": record["total"], #don't scale, the query already does it
+              }
+              balances.append(balance_data)
+            with open('root_sprayers.json', 'w') as json_file:
+              json.dump(balances, json_file, indent=2)
+            return result

@@ -49,14 +49,17 @@ def sanity_command():
 def balance_command():
     typer.echo("Exporting balance...")
     balances = cli_manager.neo4j_client.get_balances()
-
-    # Add your sanity check logic here
     typer.echo("Balance export completed.")
 
+def root_sprayers_command():
+    typer.echo("Finding root sprayers...")
+    balances = cli_manager.neo4j_client.get_root_sprayers()
+    typer.echo("Root sprayers export completed.")
 
 # Explicitly register the commands without decorators
 app.command("sanity")(sanity_command)
 app.command("balance")(balance_command)
+app.command("root-sprayers")(root_sprayers_command)
 
 
 

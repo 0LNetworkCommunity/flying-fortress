@@ -1,6 +1,6 @@
 WITH 1_000_000 AS scaling,
 1_000_000 AS tree_value_threshold,
-1_000 AS tx_threshold,
+10_000 AS tx_threshold,
 [
 // OLswap
 "0xf57d3968d0bfd5b3120fda88f34310c70bd72033f77422f4407fbbef7c24557a",
@@ -30,7 +30,7 @@ MATCH p=(f:Account)-[t:Tx]->(to:Account)
 
 WITH DISTINCT(f) AS from_filter, collect(to) as destinations, count(DISTINCT to) as count_to, (sum(t.V7_OlAccountTransfer_amount/scaling) + sum(t.V7_CoinTransfer_amount/scaling) + sum(t.V5_BalanceTransfer_unscaled_value/scaling * 35)) AS total_out, tree_value_threshold, ignore, scaling
 
-WHERE count_to > 5
+WHERE count_to > 3
 AND total_out > tree_value_threshold
 
 // RETURN from_filter.address, total_out, toFloat(total_out)/35000 as days_unlock

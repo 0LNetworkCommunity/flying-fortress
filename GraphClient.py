@@ -43,7 +43,8 @@ class Neo4jClient:
               balance_data = {
                 "address": record["address"],
                 "balance": record["balance"],
-                "locked": record["locked"],
+                "unlocked": record["unlocked"],
+                "daily_pct": record["daily_pct"],
                 "cw": record["community_wallet"],
               }
               balances.append(balance_data)
@@ -85,20 +86,22 @@ class Neo4jClient:
               json.dump(balances, json_file, indent=2)
             return result
 
-  def get_spray_tree_with_balances(self, root_sprayer_literal):
+  def get_spray_tree_with_balances(self):
       with open('queries/spray_tree_with_balances.cql', 'r') as file:
         cypher_query = file.read()
         with self.driver.session() as session:
-            params = { "root_sprayer": root_sprayer_literal}
+            # params = { "root_sprayer": root_sprayer_literal}
             result = session.run(cypher_query, params)
             balances = []
             total_sum = 0
             for record in result:
+              print(record)
               balance_data = {
-                "root" : params["root_sprayer"],
                 "address": record["address"],
+                "root_sprayer" : record["root_sprayer"],
+                "root_sprayer_out": record["root_sprayer_out"],
                 "balance": record["balance"],
-                "locked": record["locked"]
+                "daily_pct": record["daily_pct"]
               }
               total_sum = total_sum + record["balance"]
               balances.append(balance_data)

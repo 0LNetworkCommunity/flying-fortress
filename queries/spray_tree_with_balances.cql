@@ -1,5 +1,4 @@
-WITH $root_sprayer as from_account,
-1_000_000 AS scaling,
+WITH 1_000_000 AS scaling,
 1_000_000 AS tree_value_threshold,
 1_000 AS tx_threshold,
 [
@@ -16,17 +15,31 @@ WITH $root_sprayer as from_account,
 
 ] AS ignore
 
-MATCH p=SHORTEST 1 (a:Account {address: from_account})-[r:Tx *..4]->(to:Account)
-  WHERE none(
-    n in nodes(p)
-    where n.address in ignore
+
+MATCH p=(f:Account)-[t:Tx]->(to:Account)
+ WHERE (
+    t.V7_OlAccountTransfer_amount/scaling > tx_threshold
+    OR t.V7_CoinTransfer_amount/scaling > tx_threshold
+    OR t.V5_BalanceTransfer_unscaled_value/scaling > (tx_threshold/35)
+  )
+  AND(
+    NOT f.address IN ignore
+    AND NOT to.address IN ignore
   )
 
-WITH DISTINCT(to) as destinations, scaling
 
-MATCH (destinations)-[:State]->(s:Snapshot {version: 94602328})
+WITH DISTINCT(f) AS from_filter, collect(to) as destinations, count(DISTINCT to) as count_to, (sum(t.V7_OlAccountTransfer_amount/scaling) + sum(t.V7_CoinTransfer_amount/scaling) + sum(t.V5_BalanceTransfer_unscaled_value/scaling * 35)) AS total_out, tree_value_threshold, ignore, scaling
 
-WHERE s.balance > scaling
+WHERE count_to > 5
+AND total_out > tree_value_threshold
 
-RETURN destinations.address as address, s.balance/scaling as balance, s.slow_locked/scaling as locked, s.donor_voice as community_wallet
-ORDER BY balance DESC
+// RETURN from_filter.address, total_out, toFloat(total_out)/35000 as days_unlock
+// ORDER BY days_unlock DESC
+
+WITH DISTINCT(destinations) as temp, scaling, from_filter, total_out
+UNWIND temp AS uniqueDestinations
+MATCH (uniqueDestinations)-[:State]->(s:Snapshot {version: 94602328, donor_voice: false})
+WHERE s.balance/scaling > 10_000
+
+RETURN distinct(uniqueDestinations.address) as address, from_filter.address as root_sprayer, total_out as root_sprayer_out, s.balance/scaling as balance, 1/toFloat(total_out/35000) as daily_pct
+ORDER BY root_sprayer_out DESC

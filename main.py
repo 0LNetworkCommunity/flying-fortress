@@ -63,8 +63,7 @@ def spray_tree_command():
 
 def spray_tree_balances_command():
     typer.echo("Finding spray tree for addr...")
-    test_acct = "0xbd6323842b5dc76e178ae7eaeacce7f"
-    balances = cli_manager.neo4j_client.get_spray_tree_with_balances(test_acct)
+    balances = cli_manager.neo4j_client.get_spray_tree_with_balances()
     typer.echo("Spray tree balances export completed.")
 
 # Explicitly register the commands without decorators

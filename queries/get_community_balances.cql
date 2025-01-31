@@ -11,7 +11,7 @@ AND accs.community IS NOT NULL
 WITH DISTINCT accs.community AS cm_id, count(accs) as ct, ignore
 ORDER BY ct DESC
 WHERE ct > 4
-SKIP 0
+SKIP 10
 LIMIT 1
 
 MATCH (core:Account)
@@ -23,9 +23,10 @@ MATCH (core)-[:State]->(s:Snapshot)
 WITH sum(s.balance)/1_000_000 as group_total, collect(core.address) as list, cm_id
 
 
-MATCH (a:Account)-[:State]->(new:Snapshot)
+MATCH (a:Account)-[:State]->(s2:Snapshot)
 WHERE a.address in list
-WITH new.balance / 1_000_000 as balance, new.address AS address, group_total, toFloat(group_total)/35_000/365  AS years_unlock, cm_id
+AND s2.donor_voice = false
+WITH s2.balance / 1_000_000 as balance, s2.address AS address, group_total, toFloat(group_total)/35_000/365  AS years_unlock, cm_id
 RETURN address, balance, group_total, years_unlock, cm_id
 
 ORDER BY balance DESC

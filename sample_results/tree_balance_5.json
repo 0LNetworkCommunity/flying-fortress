@@ -1,0 +1,205 @@
+[
+  {
+    "address": "0xba28f081de02fc6cc3bf9879d6033911",
+    "balance": 50010256,
+    "group_balance": 106410887,
+    "years_unlock": 8.329619334637965,
+    "group_id": "4:17253ad5-474c-495f-a64f-0b9a6c1fa501:103498"
+  },
+  {
+    "address": "0x632212cbec0e18fb7136d5ebafce7354",
+    "balance": 18489753,
+    "group_balance": 106410887,
+    "years_unlock": 8.329619334637965,
+    "group_id": "4:17253ad5-474c-495f-a64f-0b9a6c1fa501:103498"
+  },
+  {
+    "address": "0x50b68213df35fd63a736312995f5513",
+    "balance": 14861319,
+    "group_balance": 106410887,
+    "years_unlock": 8.329619334637965,
+    "group_id": "4:17253ad5-474c-495f-a64f-0b9a6c1fa501:103498"
+  },
+  {
+    "address": "0xe77f827b17b51877b2f955fc08be8679",
+    "balance": 10466215,
+    "group_balance": 106410887,
+    "years_unlock": 8.329619334637965,
+    "group_id": "4:17253ad5-474c-495f-a64f-0b9a6c1fa501:103498"
+  },
+  {
+    "address": "0xc24f397c1115ec67199c6cf9a378419e",
+    "balance": 4412505,
+    "group_balance": 106410887,
+    "years_unlock": 8.329619334637965,
+    "group_id": "4:17253ad5-474c-495f-a64f-0b9a6c1fa501:103498"
+  },
+  {
+    "address": "0x33d3c4091cc0b5aaa9d5adff84580ecce6c4587deecf392ea16248677dddc25e",
+    "balance": 4000500,
+    "group_balance": 106410887,
+    "years_unlock": 8.329619334637965,
+    "group_id": "4:17253ad5-474c-495f-a64f-0b9a6c1fa501:103498"
+  },
+  {
+    "address": "0x95d075f3eb3751ff98d94230c36944d2",
+    "balance": 2758218,
+    "group_balance": 106410887,
+    "years_unlock": 8.329619334637965,
+    "group_id": "4:17253ad5-474c-495f-a64f-0b9a6c1fa501:103498"
+  },
+  {
+    "address": "0x4d9e3491705e5c4216f07d309e2870a4",
+    "balance": 1412037,
+    "group_balance": 106410887,
+    "years_unlock": 8.329619334637965,
+    "group_id": "4:17253ad5-474c-495f-a64f-0b9a6c1fa501:103498"
+  },
+  {
+    "address": "0xab8186f9dad86872fcfa692d8e4e9c62a0dc608787fb1b5f3279500a312941b8",
+    "balance": 10,
+    "group_balance": 106410887,
+    "years_unlock": 8.329619334637965,
+    "group_id": "4:17253ad5-474c-495f-a64f-0b9a6c1fa501:103498"
+  },
+  {
+    "address": "0x185d3fd9684a73a3b4c623b9b171e66247966200a041f45e989b81a693b8dc82",
+    "balance": 10,
+    "group_balance": 106410887,
+    "years_unlock": 8.329619334637965,
+    "group_id": "4:17253ad5-474c-495f-a64f-0b9a6c1fa501:103498"
+  },
+  {
+    "address": "0x8d9129d7e0e14b83aa128fb45c35967b42f47f90898757870399d64e611b663",
+    "balance": 10,
+    "group_balance": 106410887,
+    "years_unlock": 8.329619334637965,
+    "group_id": "4:17253ad5-474c-495f-a64f-0b9a6c1fa501:103498"
+  },
+  {
+    "address": "0x70e753564c818e27fe0b5a669ada79cf5838357a3626fcf60eb747ce261d21bd",
+    "balance": 9,
+    "group_balance": 106410887,
+    "years_unlock": 8.329619334637965,
+    "group_id": "4:17253ad5-474c-495f-a64f-0b9a6c1fa501:103498"
+  },
+  {
+    "address": "0xd0ec0725a0bd360fe61fb6b553daf3eb2a0f23061789a105583d4d6556a7ea22",
+    "balance": 9,
+    "group_balance": 106410887,
+    "years_unlock": 8.329619334637965,
+    "group_id": "4:17253ad5-474c-495f-a64f-0b9a6c1fa501:103498"
+  },
+  {
+    "address": "0x23f95344cd028cb57f391f833d6c1c6533e3a7df02c7ef926a33a92c19d8739c",
+    "balance": 9,
+    "group_balance": 106410887,
+    "years_unlock": 8.329619334637965,
+    "group_id": "4:17253ad5-474c-495f-a64f-0b9a6c1fa501:103498"
+  },
+  {
+    "address": "0xf3b93551e4e88d1215619c67a4c31ba006eed9ac94cf33155f7b9b2acfd7a87d",
+    "balance": 9,
+    "group_balance": 106410887,
+    "years_unlock": 8.329619334637965,
+    "group_id": "4:17253ad5-474c-495f-a64f-0b9a6c1fa501:103498"
+  },
+  {
+    "address": "0x2e98f80de61e0cf8d7428045720bcdeb25f7c1773e2774f2fd61c95b014bc378",
+    "balance": 0,
+    "group_balance": 106410887,
+    "years_unlock": 8.329619334637965,
+    "group_id": "4:17253ad5-474c-495f-a64f-0b9a6c1fa501:103498"
+  },
+  {
+    "address": "0x85144acdcfc33d9e9095420b24d0aee",
+    "balance": 0,
+    "group_balance": 106410887,
+    "years_unlock": 8.329619334637965,
+    "group_id": "4:17253ad5-474c-495f-a64f-0b9a6c1fa501:103498"
+  },
+  {
+    "address": "0x7517c4f1a9b19015eb29b07e37b11459060f544d36e720d3a5d1af6ced63cd15",
+    "balance": 0,
+    "group_balance": 106410887,
+    "years_unlock": 8.329619334637965,
+    "group_id": "4:17253ad5-474c-495f-a64f-0b9a6c1fa501:103498"
+  },
+  {
+    "address": "0xfa8dd72fe0791472021d9c5206a0bda4",
+    "balance": 0,
+    "group_balance": 106410887,
+    "years_unlock": 8.329619334637965,
+    "group_id": "4:17253ad5-474c-495f-a64f-0b9a6c1fa501:103498"
+  },
+  {
+    "address": "0x7fb2d4de30574fb78435e078b44e242caf5aaecfbd4f8a97c220ba15bd972a29",
+    "balance": 0,
+    "group_balance": 106410887,
+    "years_unlock": 8.329619334637965,
+    "group_id": "4:17253ad5-474c-495f-a64f-0b9a6c1fa501:103498"
+  },
+  {
+    "address": "0x4d250de8388d8232f702ffc6de74df626325cbd24ad416350ab2a4e30b2c92c6",
+    "balance": 0,
+    "group_balance": 106410887,
+    "years_unlock": 8.329619334637965,
+    "group_id": "4:17253ad5-474c-495f-a64f-0b9a6c1fa501:103498"
+  },
+  {
+    "address": "0x16ed8c1f3bc39e95cabab7d8d57213917aa1db7e23a6ce7b578da5ce5b47b0e6",
+    "balance": 0,
+    "group_balance": 106410887,
+    "years_unlock": 8.329619334637965,
+    "group_id": "4:17253ad5-474c-495f-a64f-0b9a6c1fa501:103498"
+  },
+  {
+    "address": "0x18e9110f6fa4e4dd79084e0f4d6b5d022946df8ef655a59cb912e011355fc171",
+    "balance": 0,
+    "group_balance": 106410887,
+    "years_unlock": 8.329619334637965,
+    "group_id": "4:17253ad5-474c-495f-a64f-0b9a6c1fa501:103498"
+  },
+  {
+    "address": "0xe60af580b2f7e56237530d60fd249385b72ee089df217f541d350b2d99fb514b",
+    "balance": 0,
+    "group_balance": 106410887,
+    "years_unlock": 8.329619334637965,
+    "group_id": "4:17253ad5-474c-495f-a64f-0b9a6c1fa501:103498"
+  },
+  {
+    "address": "0xe21ef4c48e7b02a03e28e0733f72b4c90abd9b4b1d9a64cd00ec044e1f35e706",
+    "balance": 0,
+    "group_balance": 106410887,
+    "years_unlock": 8.329619334637965,
+    "group_id": "4:17253ad5-474c-495f-a64f-0b9a6c1fa501:103498"
+  },
+  {
+    "address": "0xfc42b5270a206a075a8c97b006e6800f",
+    "balance": 0,
+    "group_balance": 106410887,
+    "years_unlock": 8.329619334637965,
+    "group_id": "4:17253ad5-474c-495f-a64f-0b9a6c1fa501:103498"
+  },
+  {
+    "address": "0x21fc163ec6e12162be8612bfd2beba9e",
+    "balance": 0,
+    "group_balance": 106410887,
+    "years_unlock": 8.329619334637965,
+    "group_id": "4:17253ad5-474c-495f-a64f-0b9a6c1fa501:103498"
+  },
+  {
+    "address": "0x319dcd747f369367800f61cd54f3e600832aff099344db4bf3ae36e8a4132095",
+    "balance": 0,
+    "group_balance": 106410887,
+    "years_unlock": 8.329619334637965,
+    "group_id": "4:17253ad5-474c-495f-a64f-0b9a6c1fa501:103498"
+  },
+  {
+    "address": "0x69c50975e6adb307239e43421743e6a8",
+    "balance": 0,
+    "group_balance": 106410887,
+    "years_unlock": 8.329619334637965,
+    "group_id": "4:17253ad5-474c-495f-a64f-0b9a6c1fa501:103498"
+  }
+]

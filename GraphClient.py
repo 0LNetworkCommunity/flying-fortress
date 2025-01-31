@@ -39,6 +39,8 @@ class Neo4jClient:
         with self.driver.session() as session:
             result = session.run(cypher_query)
             balances = []
+            total_sum = 0
+
             for record in result:
               balance_data = {
                 "address": record["address"],
@@ -48,6 +50,8 @@ class Neo4jClient:
                 "cw": record["community_wallet"],
               }
               balances.append(balance_data)
+              total_sum = total_sum + record["balance"]
+            print("total balance in query {:,}".format(total_sum))
             with open('balances.json', 'w') as json_file:
               json.dump(balances, json_file, indent=2)
             return result
@@ -62,7 +66,7 @@ class Neo4jClient:
               balance_data = {
                 "address": record["address"],
                 "destinations": record["destinations"],
-                "total_out": record["total_out"], #don't scale, the query already does it
+                "total_out": record["total_out"], # don't scale, the query already does it
               }
               balances.append(balance_data)
             with open('root_sprayers.json', 'w') as json_file:
@@ -107,5 +111,31 @@ class Neo4jClient:
               balances.append(balance_data)
             print("total balance in tree {:,}".format(total_sum))
             with open('spray_tree_with_balances.json', 'w') as json_file:
+              json.dump(balances, json_file, indent=2)
+            return result
+
+  def get_community_balance(self, rank):
+      with open('queries/get_community_balances.cql', 'r') as file:
+        cypher_query = file.read()
+        with self.driver.session() as session:
+            # params = { "root_sprayer": root_sprayer_literal}
+            result = session.run(cypher_query, {
+               "skip_idx": rank
+            })
+            balances = []
+            total_sum = 0
+            for record in result:
+              print(record)
+              balance_data = {
+                "address": record["address"],
+                "balance": record["balance"],
+                "group_balance": record["group_total"],
+                "years_unlock": record["years_unlock"],
+                "group_id": record["cm_id"],
+              }
+              total_sum = total_sum + record["balance"]
+              balances.append(balance_data)
+            print("total balance in tree {:,}".format(total_sum))
+            with open('tree_balance.json', 'w') as json_file:
               json.dump(balances, json_file, indent=2)
             return result

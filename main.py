@@ -61,17 +61,24 @@ def spray_tree_command():
     balances = cli_manager.neo4j_client.get_spray_tree()
     typer.echo("Spray tree export completed.")
 
-def spray_tree_balances_command():
-    typer.echo("Finding spray tree for addr...")
-    balances = cli_manager.neo4j_client.get_spray_tree_with_balances()
-    typer.echo("Spray tree balances export completed.")
+# def spray_tree_balances_command():
+#     typer.echo("Finding spray tree for addr...")
+#     balances = cli_manager.neo4j_client.get_spray_tree_with_balances()
+#     typer.echo("Spray tree balances export completed.")
+
+def cli_get_tree_balance():
+    typer.echo("Finding balance in tree for rank...")
+    balances = cli_manager.neo4j_client.get_community_balance(10)
+    typer.echo("balances export completed.")
+
 
 # Explicitly register the commands without decorators
 app.command("sanity")(sanity_command)
 app.command("balance")(balance_command)
 app.command("root-sprayers")(root_sprayers_command)
 app.command("spray-tree")(spray_tree_command)
-app.command("spray-tree-balances")(spray_tree_balances_command)
+# app.command("spray-tree-balances")(spray_tree_balances_command)
+app.command("tree-balances")(cli_get_tree_balance)
 
 
 
